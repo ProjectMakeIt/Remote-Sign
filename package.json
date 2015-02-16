@@ -1,0 +1,34 @@
+{
+  "name": "remoteSign",
+  "version": "1.0.0",
+  "description": "",
+  "main": "\"\"",
+  "dependencies": {
+    "express": "^4.11.2",
+    "express-admin": "^1.2.6",
+    "jade": "^1.9.2"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.9.0",
+    "gulp": "^3.8.11",
+    "gulp-coffee": "^2.3.1",
+    "gulp-coffee-istanbul": "^0.7.0",
+    "gulp-coffeelint": "^0.4.0",
+    "gulp-coveralls": "^0.1.3",
+    "gulp-express": "^0.1.7",
+    "gulp-mocha": "^2.0.0"
+  },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrmakeit/Remote-Sign.git"
+  },
+  "author": "Blixa Morgan <blixa@projectmakeit.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrmakeit/Remote-Sign/issues"
+  },
+  "homepage": "https://github.com/mrmakeit/Remote-Sign"
+}
