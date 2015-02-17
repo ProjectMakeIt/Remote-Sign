@@ -5,26 +5,33 @@ coveralls = require 'gulp-coveralls'
 coffeelint = require 'gulp-coffeelint'
 coffee = require 'gulp-coffee'
 server = require 'gulp-express'
+livereload = require 'gulp-livereload'
+cached = require 'gulp-cached'
 
-gulp.task 'default', ['jade', 'test', 'lint', 'build', 'watch', 'run']
+gulp.task 'default', ['test', 'lint', 'build', 'watch', 'run']
 
-gulp.task 'watch', ['build', 'test', 'lint', 'jade'], ->
+gulp.task 'watch', ['build', 'test', 'lint'], ->
+	livereload.listen
+		port: 8000
 	gulp.watch 'src/**/*.coffee', ['test', 'lint', 'build']
-	gulp.watch 'src/**/*', ['jade']
 
 gulp.task 'run', ['watch'], ->
 	server.run
 		file: 'build/server/app.js'
-	
-	gulp.watch ['build/server/**/*.js'], server.notify
+	gulp.watch 'build/server/**/*.js', ()->
+		server.run
+			file: 'build/server/app.js'
 
 gulp.task 'build', ->
 	gulp.src 'src/**/*.coffee'
+		.pipe cached 'build'
 		.pipe coffee()
-		.pipe gulp.dest 'build/server'
+		.pipe gulp.dest 'build'
+		.pipe livereload()
 
 gulp.task 'test', (done) ->
 	gulp.src 'src/**/*.coffee'
+		.pipe cached 'test'
 		.pipe istanbul
 			includeUntested: true
 		.pipe istanbul.hookRequire()
@@ -48,6 +55,7 @@ gulp.task 'test', (done) ->
 
 gulp.task 'lint', ->
 	gulp.src ['**/*.coffee','!node_modules/**/*']
+		.pipe cached 'lint'
 		.pipe coffeelint 'coffeelint.json'
 		.pipe coffeelint.reporter()
 		.pipe coffeelint.reporter 'fail'
