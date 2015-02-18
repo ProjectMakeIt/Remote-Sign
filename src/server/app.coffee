@@ -13,7 +13,7 @@ app.use express.static path.join process.cwd() + '/public'
 app.use express.static path.join process.cwd() + '/build/client/'
 
 app.io.route 'init', (req) ->
-	req.io.emit 'image', {url: 'https://www.google.com/images/srpr/logo11w.png'}
+	req.io.emit 'image', {url: 'img/fltlogo.png'}
 	console.log 'init from client'
 	name = req.name
 	rotate = new schedule.RecurrenceRule()
@@ -32,5 +32,7 @@ app.io.route 'init', (req) ->
 				req.io.emit 'slide',
 					document: doc
 	).bind req
+
+console.log 'running'
 
 app.listen 3000

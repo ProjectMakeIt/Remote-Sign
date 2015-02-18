@@ -16,22 +16,19 @@ gulp.task 'watch', ['build', 'test', 'lint'], ->
 	gulp.watch 'src/**/*.coffee', ['test', 'lint', 'build']
 
 gulp.task 'run', ['watch'], ->
-	server.run
-		file: 'build/server/app.js'
+	console.log "launching server"
+	server.run ['build/server/app.js']
 	gulp.watch 'build/server/**/*.js', ()->
-		server.run
-			file: 'build/server/app.js'
+		server.run ['build/server/app.js']
 
 gulp.task 'build', ->
 	gulp.src 'src/**/*.coffee'
-		.pipe cached 'build'
 		.pipe coffee()
 		.pipe gulp.dest 'build'
 		.pipe livereload()
 
 gulp.task 'test', (done) ->
 	gulp.src 'src/**/*.coffee'
-		.pipe cached 'test'
 		.pipe istanbul
 			includeUntested: true
 		.pipe istanbul.hookRequire()
@@ -55,7 +52,6 @@ gulp.task 'test', (done) ->
 
 gulp.task 'lint', ->
 	gulp.src ['**/*.coffee','!node_modules/**/*']
-		.pipe cached 'lint'
 		.pipe coffeelint 'coffeelint.json'
 		.pipe coffeelint.reporter()
 		.pipe coffeelint.reporter 'fail'
