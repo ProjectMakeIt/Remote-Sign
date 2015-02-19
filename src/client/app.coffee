@@ -1,4 +1,4 @@
-socket = io.connect()
+window.socket = socket = io.connect()
 
 socket.emit 'init'
 

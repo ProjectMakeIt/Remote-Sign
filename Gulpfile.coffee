@@ -4,7 +4,7 @@ istanbul = require 'gulp-coffee-istanbul'
 coveralls = require 'gulp-coveralls'
 coffeelint = require 'gulp-coffeelint'
 coffee = require 'gulp-coffee'
-server = require 'gulp-express'
+nodemon = require 'gulp-nodemon'
 livereload = require 'gulp-livereload'
 cached = require 'gulp-cached'
 
@@ -17,9 +17,9 @@ gulp.task 'watch', ['build', 'test', 'lint'], ->
 
 gulp.task 'run', ['watch'], ->
 	console.log "launching server"
-	server.run ['build/server/app.js']
-	gulp.watch 'build/server/**/*.js', ()->
-		server.run ['build/server/app.js']
+	nodemon
+		script: 'build/server/app.js'
+		watch: 'build/server'
 
 gulp.task 'build', ->
 	gulp.src 'src/**/*.coffee'
