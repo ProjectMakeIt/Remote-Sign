@@ -1,0 +1,30 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: grey;
+}
+#slides {
+	height: 260px;
+	padding: 10px;
+}
+
+.slide{
+	width: 320px;
+	height: 100%;
+	background: white;
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+.slide img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+#newSlide a{
+	display:block;
+	height:75%;
+	margin-top:10%;
+	text-align: center;
+}
