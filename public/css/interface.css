@@ -8,6 +8,10 @@ body {
 	padding: 10px;
 }
 
+#newSlideWrapper {
+	height: 260px;
+	padding: 10px;
+}
 .slide{
 	width: 320px;
 	height: 100%;

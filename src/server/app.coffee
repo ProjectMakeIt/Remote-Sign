@@ -47,6 +47,8 @@ app.io.route 'add', (req) ->
 		db.insert doc, (err)->
 			if err
 				console.error err
+			getAll(req)
+
 
 app.io.route 'remove', (req) ->
 	console.log req.data.id
@@ -61,12 +63,16 @@ app.io.route 'remove', (req) ->
 	, (err) ->
 		if err
 			console.error err
+		getAll(req)
 		
 
 app.io.route 'next', (req) ->
 	nextSlide req
 	
 app.io.route 'getAll', (req) ->
+	getAll req
+
+getAll = (req) ->
 	db.find
 		isSlide: true
 	, (err, doc) ->
