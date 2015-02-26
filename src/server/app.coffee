@@ -30,8 +30,7 @@ nextSlide = (req) ->
 				return
 			doc = docs[counter]
 			req.io.emit 'image',
-				url: doc.url
-
+				url: doc.url 
 app.io.route 'init', (req) ->
 	req.io.emit 'image', {url: 'img/fltlogo.png'}
 	setInterval	nextSlide, 5000, req
@@ -79,4 +78,7 @@ getAll = (req) ->
 		req.io.emit 'slides', doc
 console.log 'running'
 
-app.listen 3000
+port = process.env.PORT || 3000
+app.listen port
+if process.env.C9_PROJECT
+	console.log "Project launched"
