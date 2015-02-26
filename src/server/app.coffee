@@ -81,5 +81,3 @@ console.log 'running'
 
 port = process.env.PORT || 3000
 app.listen port
-if process.env.C9_PROJECT
-	console.log "Project launched"
