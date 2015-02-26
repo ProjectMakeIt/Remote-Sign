@@ -30,7 +30,8 @@ nextSlide = (req) ->
 				return
 			doc = docs[counter]
 			req.io.emit 'image',
-				url: doc.url 
+				url: doc.url
+
 app.io.route 'init', (req) ->
 	req.io.emit 'image', {url: 'img/fltlogo.png'}
 	setInterval	nextSlide, 5000, req
