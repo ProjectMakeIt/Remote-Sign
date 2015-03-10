@@ -26,3 +26,6 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+
+# effing .c9 crud
+.c9/
