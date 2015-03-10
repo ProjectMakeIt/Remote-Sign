@@ -28,4 +28,5 @@ node_modules
 .lock-wscript
 
 # effing .c9 crud
+.c9
 .c9/
