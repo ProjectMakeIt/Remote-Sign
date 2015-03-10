@@ -34,3 +34,4 @@ window.getSlides = (docs) ->
 	slides.empty()
 	for doc in docs
 		slides.append $ Handlebars.templates['slide-template.html'](doc)
+	window.sortable = Sortable.create(slides[0])
