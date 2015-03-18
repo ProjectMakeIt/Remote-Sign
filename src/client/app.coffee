@@ -6,26 +6,33 @@ window.socket = socket = io.connect()
 
 socket.emit 'init'
 
-window.updateFrame = (type, item) ->
-	if type = 'image'
-		image = $('<img></img>')
+socket.emit 'getAll'
+
+frames = {}
+
+window.addFrame = (item) ->
+	frame = ''
+	if item.type = 'image'
+		frame = $('<img></img>')
 			.addClass('imageSlide')
+			.attr('id', item._id)
 			.attr('src',item.url)
-		$('#screen')
-			.empty()
-			.append(image)
-	else if type = 'text'
-		text = $('<div></div>')
-			.addClass('textSlide')
-			.text(item.text)
-		$('#screen')
-			.empty()
-			.append(text)
+	else if item.type = 'video'
+		frame = $('<video></video>')
+			.addClass('videoSlide')
+			.attr('id',item._id)
+			.attr('src',item.url)
+	frames[item._id] = frame
 
-socket.on 'image', (data) ->
-	console.log 'new image'
-	updateFrame 'image', data
+window.setFrame = (item) ->
+	frame = frames[item._id]
+	$('#screen')
+		.empty()
+		.append(image)
 
-socket.on 'text', (data) ->
-	console.log 'new text'
-	updateFrame 'text', data
+socket.on 'setSlide', (data) ->
+	console.log 'Set slide'
+	setFrame data
+
+socket.on 'addSlide', (data) ->
+	addFrame(data)
