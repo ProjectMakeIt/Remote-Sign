@@ -56,8 +56,8 @@ body {
 }
 
 .slide .screen-frame {
-	width: 320px;	/* js to define width & height */
-	height: 180px;
+	width: 1920px;	/* js to define width & height */
+	height: 1080px;
 	border: 2px dashed #FFFF00;
 }
 .slide .screen-resolution {
@@ -66,10 +66,10 @@ body {
 	background-color: #FF00FF;
 }
 
-.screen-resolution img {
+.slide .screen-resolution img {
 	position: absolute;
-	max-width: 320px;	/* js to define width & height */
-	max-height: 100%;
+	width: 100%;	/* js to define width & height */
+	height: 100%;
 }
 
 
@@ -90,4 +90,16 @@ body {
 #newSlide img {
 	max-width: 100%;
 	max-height: 100%;
+}
+
+@media screen and (max-width: 5928px) {
+	.slide .screen-frame {
+		width: scale(50%);
+		height: auto;
+	}
+
+	.slide .screen-resolution img {
+		width: scale(50%);
+		height: auto;
+	}
 }
