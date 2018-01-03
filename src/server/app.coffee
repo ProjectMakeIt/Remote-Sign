@@ -38,7 +38,7 @@ nextSlide = (req) ->
 
 app.io.route 'init', (req) ->
 	req.io.emit 'image', {url: 'img/fltlogo.png'}
-	setInterval	nextSlide, 5000, req
+#	setInterval	nextSlide, 5000, req
 
 app.io.route 'add', (req) ->
 	db.count
@@ -85,3 +85,4 @@ console.log 'running'
 
 port = process.env.PORT || 3000
 app.listen port
+console.log 'closing'
